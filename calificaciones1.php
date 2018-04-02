@@ -53,7 +53,7 @@ document.write("<big><font color='000000' face='Arial'><b>"+daym+"/"+month+"/"+y
 </script>
 <!-- -->
 <form method="post" action="insertar.php"><br>
-  <div id="tabla">
+  <!--div id="tabla">
     <table align="center" width="200%" border="2" bordercolor="#0000FF" cellspacing="10" cellpadding="10">
         <tr>
           <td align="center" bgcolor="orange"><strong>Nombre del alumno</strong></td>
@@ -81,8 +81,9 @@ document.write("<big><font color='000000' face='Arial'><b>"+daym+"/"+month+"/"+y
      </table>
  </div>
  <br><p align="center"><strong>Nota: En caso de que solo vaya a agregar calificaciones a una sola unidad, agregue un 0 a las demas. En caso contrario, rellene todos los campos.</strong></p><br>
+ -->
  <!-- -->
-  <div id="tabla">
+  <!--div id="tabla">
     <table align="center" width="200%" border="2" bordercolor="#0000FF" cellspacing="10" cellpadding="10">
         <tr>
           <td align="center" bgcolor="orange"><strong>Nombre del alumno</strong></td>
@@ -110,7 +111,47 @@ document.write("<big><font color='000000' face='Arial'><b>"+daym+"/"+month+"/"+y
      </table>
  </div>
  <br><p align="center"><strong>Nota: En caso de que solo vaya a agregar calificaciones a una sola unidad, agregue un 0 a las demas. En caso contrario, rellene todos los campos.</strong></p><br>
+ -->
  <!-- -->
+<?php
+$query = 'SELECT u.id_alumno, u.nombre_alumno FROM usuarios u 
+          INNER JOIN materia_alumno mA ON u.id_alumno = mA.id_alumno 
+          INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia
+          WHERE mD.clave_materia = "TIF-1003"';
+$result = mysqli_query($connect,$query);
+foreach ($result as $key => $value) {
+  echo $value['nombre_alumno'];
+  echo ('<div id="tabla">
+  <table align="center" width="200%" border="2" bordercolor="#0000FF" cellspacing="10" cellpadding="10">
+    <tr>
+      <td align="center" bgcolor="orange"><strong>Nombre del alumno</strong></td>
+    </tr>
+  <tr>
+    <td align="center">'.$value['nombre_alumno'].'</td>
+  </tr>
+</table>
+</div>
+<div id="tabla"><table align="center" width="200%" border="2" bordercolor="#0000FF" cellspacing="10" cellpadding="10">
+  <tr>
+    <td align="center" bgcolor="orange"><strong>Unidad 1</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 2</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 3</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 4</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 5</strong></td>
+  </tr>
+  <tr>
+    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
+  </tr>
+  </table>
+</div>
+<br><p align="center"><strong>Nota: En caso de que solo vaya a agregar calificaciones a una sola unidad, agregue un 0 a las demas. En caso contrario, rellene todos los campos.</strong></p><br>
+  ');
+}
+?>
     <div><br><br><center><input type="submit" class="btn btn-primary" value="Ingresar datos" style='width:35%; height:30px;'OnClick="location.href='insertar.php'">
     </center>
     </div><br><br>
