@@ -52,16 +52,18 @@ if ($connect) {
         $unidad4= $calificaciones[3];
         $unidad5= $calificaciones[4];
 
+        // SINTAXIS UPDATE: UPDATE tabla SET columna1 = valor1, columnaN = valorN WHERE condidional;
         $consulta="UPDATE calificaciones_1 SET unidad1 = '$unidad1', unidad2 = '$unidad2', unidad3 = '$unidad3', unidad4 = '$unidad4', unidad5 = '$unidad5' WHERE id_alumno = '$id_alumno'";
 
+        //detectar errores en la ejecucion
         try{
             $resultado=mysqli_query($connect,$consulta);
         }catch (Exception $e){
             echo $e;
             break;
-        }
+        }  
     }
-    mysqli_close($connect);
+    //mysqli_close($connect);
     /*
     $unidad1= $_POST ['u1'];
     $unidad2= $_POST ['u2'];
@@ -88,12 +90,12 @@ if ($connect) {
       echo "Error en la desconexión";
     }
 }
-/*
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "basedatosmaster";
-*/
+
 function mostrarDatos ($resultados) {
 if ($resultados !=NULL) {
 echo "- Alumno: " .$resultados['nombre_alumno']."<br/>";
@@ -106,20 +108,19 @@ echo "- Unidad 5: ".$resultados['unidad5']."<br/>";
 echo "**********************************<br/>";}
 else {echo "<br/>No hay más datos! <br/>";}
 }
-/*
- * Esto no lo necesitas, ya tienes la variable $connect que hace lo mismo.
- *
+
+
 $link = mysqli_connect($servername,$username,$password);
 mysqli_select_db($link, $dbname);
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
 $result = mysqli_query($link, "SELECT * FROM calificaciones_1");
-*/
-$result = mysqli_query($connect, "SELECT * FROM calificaciones_1");
+
 while ($fila = mysqli_fetch_array($result)){
 mostrarDatos($fila);
 }
 mysqli_free_result($result);
-mysqli_close($connect);
+mysqli_close($link);
+
 
 ?>
 <h1><div align="center">Calificaciones agregadas a la base de datos</div></h1><br>

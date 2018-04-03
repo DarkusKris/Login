@@ -140,6 +140,15 @@ foreach ($result as $key => $value) {
 </div>
 <br><p align="center"><strong>Nota: En caso de que solo vaya a agregar calificaciones a una sola unidad, agregue un 0 a las demas. En caso contrario, rellene todos los campos.</strong></p><br>
   ');
+  // $_POST['alumno']			[id_alumno]									[calificacion]
+  //	A- esta es la variable, 	A-esto es el id del alumno en número y 		A- esta es la posicion de la calificacion (numero de la unidad -1)
+  // por ejemplo para ti que tienes la id_alumno 10 :  $_POST['alumno'][10][3]  : en los arreglos se empieza siempre en 0, por eso numero de la unidad -1, esto es
+  // si la calificacion de la unidad 3, entonces seria 3-1=2, estaria en la posicion 2
+  // Array multidimencional
+
+  // name = " variable['indice'][] "
+  // variable es la que aparece en el $_post y las demas son los indices del arreglo
+
 }
 ?>
     <div><br><br><center><input type="submit" class="btn btn-primary" value="Ingresar datos" style='width:35%; height:30px;'OnClick="location.href='insertar.php'">
