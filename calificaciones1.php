@@ -37,20 +37,8 @@
 			<img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
 		  </div>
 		  <center><h1>Administracion de redes</h1></center>
-<script>
-var mydate=new Date();
-var year=mydate.getYear();
-if (year < 1000)
-year+=1900;
-var day=mydate.getDay();
-var month=mydate.getMonth()+1;
-if (month<10)
-month="0"+month;
-var daym=mydate.getDate();
-if (daym<10)
-daym="0"+daym;
-document.write("<big><font color='000000' face='Arial'><b>"+daym+"/"+month+"/"+year+"</b></font></big>")
-</script>
+
+
 <!-- -->
 <form method="post" action="insertar.php"><br>
   <!--div id="tabla">
@@ -114,11 +102,13 @@ document.write("<big><font color='000000' face='Arial'><b>"+daym+"/"+month+"/"+y
  -->
  <!-- -->
 <?php
+// Sentencia de vinculación entre tablas.
 $query = 'SELECT u.id_alumno, u.nombre_alumno FROM usuarios u 
           INNER JOIN materia_alumno mA ON u.id_alumno = mA.id_alumno 
           INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia
           WHERE mD.clave_materia = "TIF-1003"';
 $result = mysqli_query($connect,$query);
+// Generación dinámica por cada alumno en esa clase.
 foreach ($result as $key => $value) {
   echo $value['nombre_alumno'];
   echo ('<div id="tabla">
@@ -140,11 +130,11 @@ foreach ($result as $key => $value) {
     <td align="center" bgcolor="orange"><strong>Unidad 5</strong></td>
   </tr>
   <tr>
-    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
-    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
-    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
-    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
-    <td align="center" bgcolor="white"><input type="number" name="alumno'.$value['id_alumno'].'[]" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad1" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad2" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad3" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad4" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad5" class="form-input" style="width:28%; height:18px;" /></td>
   </tr>
   </table>
 </div>
@@ -163,6 +153,20 @@ foreach ($result as $key => $value) {
     </center>
     </div>
 
-	</style>
+
+    <script>
+        var mydate=new Date();
+        var year=mydate.getYear();
+        if (year < 1000)
+        year+=1900;
+        var day=mydate.getDay();
+        var month=mydate.getMonth()+1;
+        if (month<10)
+        month="0"+month;
+        var daym=mydate.getDate();
+        if (daym<10)
+        daym="0"+daym;
+        document.write("<big><font color='000000' face='Arial'><b>"+daym+"/"+month+"/"+year+"</b></font></big>")
+    </script>
   </body>
 </html>

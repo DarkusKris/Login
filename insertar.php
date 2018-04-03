@@ -38,28 +38,31 @@
 		  </div>
 		  <center><h1>Administracion de redes</h1></center>
 		  <center><h3>(Grupo correspondiente)</h3></center>
-<script>
-var mydate=new Date();
-var year=mydate.getYear();
-if (year < 1000)
-year+=1900;
-var day=mydate.getDay();
-var month=mydate.getMonth()+1;
-if (month<10)
-month="0"+month;
-var daym=mydate.getDate();
-if (daym<10)
-daym="0"+daym;
-document.write("<big><font color='000000' face='Arial'><b>"+daym+"/"+month+"/"+year+"</b></font></big>")
-</script>
  <br>
  <!-- -->
 <?php
-$connect=mysqli_connect("localhost","root","","basedatosmaster");
+// Ya tienes la variable conect al hacer import a serv.php
+//$connect=mysqli_connect("localhost","root","","basedatosmaster");
 if ($connect) {
-    echo "conexion exitosa. <br />";
-    var_dump($_POST);
-    return 0;
+    echo "Conexion exitosa. <br />";
+    foreach ($_POST['alumno'] as $id_alumno => $calificaciones){
+        $unidad1= $calificaciones[0];
+        $unidad2= $calificaciones[1];
+        $unidad3= $calificaciones[2];
+        $unidad4= $calificaciones[3];
+        $unidad5= $calificaciones[4];
+
+        $consulta="UPDATE calificaciones_1 SET unidad1 = '$unidad1', unidad2 = '$unidad2', unidad3 = '$unidad3', unidad4 = '$unidad4', unidad5 = '$unidad5' WHERE id_alumno = '$id_alumno'";
+
+        try{
+            $resultado=mysqli_query($connect,$consulta);
+        }catch (Exception $e){
+            echo $e;
+            break;
+        }
+    }
+    mysqli_close($connect);
+    /*
     $unidad1= $_POST ['u1'];
     $unidad2= $_POST ['u2'];
     $unidad3= $_POST ['u3'];
@@ -70,14 +73,14 @@ if ($connect) {
     $consulta="INSERT INTO calificaciones_1 values ('$unidad1', '$unidad2', '$unidad3', '$unidad4', '$unidad5') ";
     
     $resultado=mysqli_query($connect,$consulta);
-    
+    */
     if ($resultado) {
       echo "Calificaciones almacenadas. <br />";
     }
     else {
       echo "error en la ejecución de la consulta. <br />";
     }
-    
+
     if (mysqli_close($connect)){ 
       echo "Desconexion realizada. <br />";
     } 
@@ -85,10 +88,12 @@ if ($connect) {
       echo "Error en la desconexión";
     }
 }
+/*
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "basedatosmaster";
+*/
 function mostrarDatos ($resultados) {
 if ($resultados !=NULL) {
 echo "- Alumno: " .$resultados['nombre_alumno']."<br/>";
@@ -101,15 +106,20 @@ echo "- Unidad 5: ".$resultados['unidad5']."<br/>";
 echo "**********************************<br/>";}
 else {echo "<br/>No hay más datos! <br/>";}
 }
+/*
+ * Esto no lo necesitas, ya tienes la variable $connect que hace lo mismo.
+ *
 $link = mysqli_connect($servername,$username,$password);
 mysqli_select_db($link, $dbname);
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
 $result = mysqli_query($link, "SELECT * FROM calificaciones_1");
+*/
+$result = mysqli_query($connect, "SELECT * FROM calificaciones_1");
 while ($fila = mysqli_fetch_array($result)){
 mostrarDatos($fila);
 }
 mysqli_free_result($result);
-mysqli_close($link);
+mysqli_close($connect);
 
 ?>
 <h1><div align="center">Calificaciones agregadas a la base de datos</div></h1><br>
@@ -118,6 +128,19 @@ mysqli_close($link);
     </center>
     </div>
 
-	</style>
+    <script>
+        var mydate=new Date();
+        var year=mydate.getYear();
+        if (year < 1000)
+            year+=1900;
+        var day=mydate.getDay();
+        var month=mydate.getMonth()+1;
+        if (month<10)
+            month="0"+month;
+        var daym=mydate.getDate();
+        if (daym<10)
+            daym="0"+daym;
+        document.write("<big><font color='000000' face='Arial'><b>"+daym+"/"+month+"/"+year+"</b></font></big>")
+    </script>
   </body>
 </html>
