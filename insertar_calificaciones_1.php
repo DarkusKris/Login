@@ -18,13 +18,6 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
-
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
 <body data-offset="40" background="images/fondotot.jpg" style="background-attachment: fixed">
 <div class="container">
@@ -50,10 +43,9 @@ if ($connect) {
         $unidad2= $calificaciones[1];
         $unidad3= $calificaciones[2];
         $unidad4= $calificaciones[3];
-        $unidad5= $calificaciones[4];
-
+         
         // SINTAXIS UPDATE: UPDATE tabla SET columna1 = valor1, columnaN = valorN WHERE condidional;
-        $consulta="UPDATE calificaciones_1 SET unidad1 = '$unidad1', unidad2 = '$unidad2', unidad3 = '$unidad3', unidad4 = '$unidad4', unidad5 = '$unidad5' WHERE id_alumno = '$id_alumno'";
+        $consulta="UPDATE calificaciones_1 SET unidad1 = '$unidad1', unidad2 = '$unidad2', unidad3 = '$unidad3', unidad4 = '$unidad4' WHERE id_alumno = '$id_alumno'";
 
         //detectar errores en la ejecucion
         try{
@@ -103,8 +95,7 @@ echo "- Unidad 1: ".$resultados['unidad1']."<br/> ";
 echo "- Unidad 2: ".$resultados['unidad2']."<br/>";
 echo "- Unidad 3: ".$resultados['unidad3']."<br/>";
 echo "- Unidad 4: ".$resultados['unidad4']."<br/>";
-echo "- Unidad 5: ".$resultados['unidad5']."<br/>";
-
+ 
 echo "**********************************<br/>";}
 else {echo "<br/>No hay más datos! <br/>";}
 }
