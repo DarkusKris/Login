@@ -27,7 +27,7 @@
       <img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
       </div>
 <body background="images/Fonfo3.png" style="background-repeat:no-repeat; background-size:cover" onLoad="show3()">
-    <center><div class="tit"><h2 style="color: #000000; ">Docente (Fulanito)</h2></center>
+    <center><div class="tit"><h2 style="color: #000000; ">Bienvenido</h2></center>
   <div id="reloj" style="float:left; font-size:22px;"><script type="text/javascript">
 function startTime(){
 today=new Date();
@@ -55,14 +55,24 @@ var mes = (m < 10) ? '0' + m : m;
 
 <h2><br>
 
+<?php 
+$query = 'SELECT m.id_materia, m.nombre_materia FROM materias m WHERE m.id_docente= m.id_materia';
 
-<center><button data-toggle="collapse" data-target="#demo" >Materias</button>
 
+$result = mysqli_query($connect, $query);
+foreach ($result as $key => $value) {
+  echo ('
+<center><button data-toggle="collapse" data-target="#demo">Materias</button>
 <div id="demo" class="collapse">
-<input type="button" class="btn btn-warning" value="Administracion y seguridad de redes" style='width:35%; height:30px;' OnClick="location.href='grupos_lista.php'">
-</div>
-</h2></center>
 
+<a href="grupos_lista.php"><input type="button" class="btn btn-warning" name="materia['.$value['id_materia'].']" value="['.$value['nombre_materia'].']" style="width:35%; height:30px;"></a>
+
+</h2></center> 
+</div>');
+}
+
+ ?>
+ 
 <!-- Footer
       ================================================== -->
 

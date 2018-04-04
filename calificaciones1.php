@@ -43,7 +43,7 @@ $query = 'SELECT u.id_alumno, u.nombre_alumno FROM usuarios u
 $result = mysqli_query($connect,$query);
 // Generación dinámica por cada alumno en esa clase.
 foreach ($result as $key => $value) {
-  echo $value['nombre_alumno'];
+  // echo $value['nombre_alumno'];
   echo ('<div id="tabla">
   <table align="center" width="200%" border="2" bordercolor="#0000FF" cellspacing="10" cellpadding="10">
     <tr>
