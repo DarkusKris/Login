@@ -14,6 +14,10 @@
     <meta name="description" content="">
     <meta name="author" content="Joseph Godoy">
 <input type="button" value="Cerrar Sesion" class="btn btn-warning" OnClick="location.href='logout.php'">
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
   </head>
 <body data-offset="40" background="images/fondotot.jpg" style="background-attachment: fixed">
 <div class="container">
@@ -23,10 +27,7 @@
       <img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
       </div>
 <body background="images/Fonfo3.png" style="background-repeat:no-repeat; background-size:cover" onLoad="show3()">
-    
-
-    <center><div class="tit"><h2 style="color: #000000;">Bienvenido</h2></center>
-
+    <center><div class="tit"><h2 style="color: #000000; ">Bienvenido</h2></center>
   <div id="reloj" style="float:left; font-size:22px;"><script type="text/javascript">
 function startTime(){
 today=new Date();
