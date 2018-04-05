@@ -56,7 +56,10 @@ var mes = (m < 10) ? '0' + m : m;
 <h2><br>
 
 <?php 
-$query = 'SELECT m.id_materia, m.nombre_materia FROM materias m WHERE m.id_docente= m.id_materia';
+$query = 'SELECT m.id_materia, m.nombre_materia FROM materias m
+          INNER JOIN docentes d ON d.id_docente = m.id_docente
+          INNER JOIN materia_docente mD ON mD.id_docente LIKE m.id_docente
+          WHERE m.id_docente= d.id_docentes';
 
 
 $result = mysqli_query($connect, $query);
