@@ -29,17 +29,17 @@
 		  <div class="item active">
 			<img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
 		  </div>
-		  <center><h1>Administracion de redes</h1></center>
+		  <center><h1>Auditoria en tecnologías de la información</h1></center>
 
 
 <!-- -->
-<form method="post" action="insertar_calificaciones_1.php"><br>
+<form method="post" action="insertar_calificaciones_5.php"><br>
   <?php
 // Sentencia de vinculación entre tablas.
 $query = 'SELECT u.id_alumno, u.nombre_alumno FROM usuarios u 
           INNER JOIN materia_alumno mA ON u.id_alumno = mA.id_alumno 
           INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia
-          WHERE mD.clave_materia = "TIF-1003"';
+          WHERE mD.clave_materia = "TIC-1006"';
 $result = mysqli_query($connect,$query);
 // Generación dinámica por cada alumno en esa clase.
 foreach ($result as $key => $value) {
@@ -60,12 +60,20 @@ foreach ($result as $key => $value) {
     <td align="center" bgcolor="orange"><strong>Unidad 2</strong></td>
     <td align="center" bgcolor="orange"><strong>Unidad 3</strong></td>
     <td align="center" bgcolor="orange"><strong>Unidad 4</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 5</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 6</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 7</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 8</strong></td>
   </tr>
   <tr>
     <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad1" class="form-input" style="width:28%; height:18px;" /></td>
     <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad2" class="form-input" style="width:28%; height:18px;" /></td>
     <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad3" class="form-input" style="width:28%; height:18px;" /></td>
     <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad4" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad5" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad6" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad7" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad8" class="form-input" style="width:28%; height:18px;" /></td>
   </tr>
   </table>
 </div>

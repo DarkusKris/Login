@@ -14,10 +14,6 @@
     <meta name="description" content="">
     <meta name="author" content="Joseph Godoy">
 <input type="button" value="Cerrar Sesion" class="btn btn-warning" OnClick="location.href='logout.php'">
-
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
   </head>
 <body data-offset="40" background="images/fondotot.jpg" style="background-attachment: fixed">
 <div class="container">
@@ -29,17 +25,17 @@
 		  <div class="item active">
 			<img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
 		  </div>
-		  <center><h1>Administracion de redes</h1></center>
+		  <center><h1>Interaccion humano computadora</h1></center>
 
 
 <!-- -->
-<form method="post" action="insertar_calificaciones_1.php"><br>
+<form method="post" action="insertar_calificaciones_6.php"><br>
   <?php
 // Sentencia de vinculación entre tablas.
 $query = 'SELECT u.id_alumno, u.nombre_alumno FROM usuarios u 
           INNER JOIN materia_alumno mA ON u.id_alumno = mA.id_alumno 
           INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia
-          WHERE mD.clave_materia = "TIF-1003"';
+          WHERE mD.clave_materia = "TIH-1016"';
 $result = mysqli_query($connect,$query);
 // Generación dinámica por cada alumno en esa clase.
 foreach ($result as $key => $value) {

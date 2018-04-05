@@ -29,7 +29,7 @@
 		  <div class="item active">
 			<img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
 		  </div>
-		  <center><h1>Administracion de redes</h1></center>
+		  <center><h1>Desarrollo de software agil</h1></center>
 		  <center><h3>(Grupo correspondiente)</h3></center>
  <br>
  <!-- -->
@@ -45,7 +45,7 @@ if ($connect) {
         $unidad4= $calificaciones[3];
          
         // SINTAXIS UPDATE: UPDATE tabla SET columna1 = valor1, columnaN = valorN WHERE condidional;
-        $consulta="UPDATE calificaciones_1 SET unidad1 = '$unidad1', unidad2 = '$unidad2', unidad3 = '$unidad3', unidad4 = '$unidad4' WHERE id_alumno = '$id_alumno'";
+        $consulta="UPDATE calificaciones_2 SET unidad1 = '$unidad1', unidad2 = '$unidad2', unidad3 = '$unidad3', unidad4 = '$unidad4' WHERE id_alumno = '$id_alumno'";
 
         //detectar errores en la ejecucion
         try{
@@ -104,7 +104,7 @@ else {echo "<br/>No hay más datos! <br/>";}
 $link = mysqli_connect($servername,$username,$password);
 mysqli_select_db($link, $dbname);
 $tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
-$result = mysqli_query($link, "SELECT * FROM calificaciones_1");
+$result = mysqli_query($link, "SELECT * FROM calificaciones_2");
 
 while ($fila = mysqli_fetch_array($result)){
 mostrarDatos($fila);

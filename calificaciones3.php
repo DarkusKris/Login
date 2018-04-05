@@ -29,17 +29,17 @@
 		  <div class="item active">
 			<img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
 		  </div>
-		  <center><h1>Administracion de redes</h1></center>
+		  <center><h1>Seguridad en el desarrollo de software</h1></center>
 
 
 <!-- -->
-<form method="post" action="insertar_calificaciones_1.php"><br>
+<form method="post" action="insertar_calificaciones_3.php"><br>
   <?php
 // Sentencia de vinculación entre tablas.
 $query = 'SELECT u.id_alumno, u.nombre_alumno FROM usuarios u 
           INNER JOIN materia_alumno mA ON u.id_alumno = mA.id_alumno 
           INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia
-          WHERE mD.clave_materia = "TIF-1003"';
+          WHERE mD.clave_materia = "ISD-1605"';
 $result = mysqli_query($connect,$query);
 // Generación dinámica por cada alumno en esa clase.
 foreach ($result as $key => $value) {
