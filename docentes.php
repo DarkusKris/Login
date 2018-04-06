@@ -59,23 +59,26 @@ var mes = (m < 10) ? '0' + m : m;
 <h2><br>
 <?php 
 $query = 'SELECT m.id_materia, m.nombre_materia FROM materias m
-          INNER JOIN docentes d ON d.id_docente = m.id_docente
-          WHERE d.id_docente= m.id_materia';
-
+          INNER JOIN materia_docente mD ON m.id_materia = mD.id_materia
+          WHERE mD.id_docente = '.$_SESSION['id_docente'].';';
 $result = mysqli_query($connect, $query);
-
-foreach ($_SESSION as $key => $value) {
-  echo ('
+echo ('
 <center><button data-toggle="collapse" data-target="#demo">Seleccione su materia</button>
 <div id="demo" class="collapse">
 ');
-  var_dump($value["id_materia"]);
-//echo('<a href="grupos_lista.php"><input type="button" class="btn btn-warning" name="materia['.$value["id_materia"].']" value=" '.$value["nombre_materia"].' " style="width:35%; height:32px; font-size: 18px"></a>');
+foreach ($result as $key => $value) {
 
+echo('<a href="grupos_lista.php">
+  <input type="button" class="btn btn-warning" 
+  name="materia['.$value["id_materia"].']" 
+  value=" '.$value["nombre_materia"].' " 
+  style="width:35%; height:32px; font-size: 18px">
+</a>');
+
+
+}
 echo('</h2></center> 
 </div>');
-}
-
  ?>
 
 <!-- Footer
