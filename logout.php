@@ -1,7 +1,8 @@
 <?php
 session_start();
 session_destroy();
-echo 'Cerraste sesión';
+echo 'Cerrando sesión.<br>';
+echo 'Vuelva pronto.';
 echo '<script> window.location="indexdocentes.php"; </script>';
 ?>
 <!DOCTYPE html>

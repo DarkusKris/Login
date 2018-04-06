@@ -1,8 +1,8 @@
 <?php
   session_start();
   include 'serv.php';
-  if(isset($_SESSION['usuario'])){
-  echo '<script> window.location="docentes.php"; </script>';
+  if(!isset($_SESSION['veri_code'], $_SESSION["nombre_docente"], $_SESSION["id_docente"])){
+  echo '<script> window.location="indexdocentes.php"; </script>';
   }
 ?>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
 // Sentencia de vinculación entre tablas.
 $query = 'SELECT u.id_alumno, u.nombre_alumno FROM usuarios u 
           INNER JOIN materia_alumno mA ON u.id_alumno = mA.id_alumno 
-          INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia
+          INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia1
           WHERE mD.clave_materia = "TIF-1003"';
 $result = mysqli_query($connect,$query);
 // Generación dinámica por cada alumno en esa clase.

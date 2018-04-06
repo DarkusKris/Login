@@ -1,8 +1,8 @@
 <?php
   session_start();
   include 'serv.php';
-  if(isset($_SESSION['usuario'])){
-  echo '<script> window.location="docentes.php"; </script>';
+  if(!isset($_SESSION['veri_code'], $_SESSION["nombre_docente"], $_SESSION["id_docente"])){
+  echo '<script> window.location="indexdocentes.php"; </script>';
   }
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,7 @@
 			<img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
 		  </div>
 		  <center><h1>Administracion de redes</h1></center>
-		  <center><h3>(Grupo correspondiente)</h3></center>
+		  <center><h3>Grupo 801</h3></center>
  <br>
  <!-- -->
 <?php

@@ -1,24 +1,25 @@
 <?php
   session_start();
   include 'serv.php';
-  if(!isset($_SESSION['veri_code'])){
+  if(!isset($_SESSION['veri_code'], $_SESSION["nombre_docente"], $_SESSION["id_docente"])){
   echo '<script> window.location="indexdocentes.php"; </script>';
   }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>Administracion de calificaciones</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Joseph Godoy">
-<input type="button" value="Cerrar Sesion" class="btn btn-warning" OnClick="location.href='logout.php'">
-
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </head>
+<input type="button" value="Cerrar Sesion" class="btn btn-warning" style="float: " OnClick="location.href='logout.php'"><br>
+<div class="tit2">ID: <?php echo $_SESSION["id_docente"]?></div>
+
 <body data-offset="40" background="images/fondotot.jpg" style="background-attachment: fixed">
 <div class="container">
 <div id="myCarousel" class="carousel slide homCar">
@@ -27,7 +28,9 @@
       <img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
       </div>
 <body background="images/Fonfo3.png" style="background-repeat:no-repeat; background-size:cover" onLoad="show3()">
-    <center><div class="tit"><h2 style="color: #000000; ">Bienvenido</h2></center>
+
+    <center><div class="tit"><h2 style="color: #000000;">Bienvenido <?php echo $_SESSION["nombre_docente"] ?></h2></center>
+
   <div id="reloj" style="float:left; font-size:22px;"><script type="text/javascript">
 function startTime(){
 today=new Date();
@@ -54,27 +57,27 @@ var mes = (m < 10) ? '0' + m : m;
 </script></div>
 
 <h2><br>
-
 <?php 
 $query = 'SELECT m.id_materia, m.nombre_materia FROM materias m
           INNER JOIN docentes d ON d.id_docente = m.id_docente
           WHERE d.id_docente= m.id_materia';
 
-
 $result = mysqli_query($connect, $query);
-foreach ($result as $key => $value) {
+
+foreach ($_SESSION as $key => $value) {
   echo ('
 <center><button data-toggle="collapse" data-target="#demo">Seleccione su materia</button>
 <div id="demo" class="collapse">
+');
+  var_dump($value["id_materia"]);
+//echo('<a href="grupos_lista.php"><input type="button" class="btn btn-warning" name="materia['.$value["id_materia"].']" value=" '.$value["nombre_materia"].' " style="width:35%; height:32px; font-size: 18px"></a>');
 
-<a href="grupos_lista.php"><input type="button" class="btn btn-warning" name="materia['.$value['id_materia'].']" value="['.$value['nombre_materia'].']" style="width:35%; height:32px; font-size: 18px"></a>
-
-</h2></center> 
+echo('</h2></center> 
 </div>');
 }
 
  ?>
- 
+
 <!-- Footer
       ================================================== -->
 

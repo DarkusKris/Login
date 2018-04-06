@@ -1,7 +1,7 @@
 <?php
   session_start();
   include 'serv.php';
-  if(!isset($_SESSION['veri_code'])){
+  if(!isset($_SESSION['veri_code'], $_SESSION["nombre_docente"], $_SESSION["id_docente"])){
   echo '<script> window.location="indexdocentes.php"; </script>';
   }
 ?>
@@ -27,7 +27,7 @@
       <img src="images/ING-TICs.png" alt="#" style="min-height:250px; min-width:100%"/>
       </div>
 <body background="images/Fonfo3.png" style="background-repeat:no-repeat; background-size:cover" onLoad="show3()">
-    <center><div class="tit"><h2 style="color: #000000; ">Docente (Fulanito)</h2></center>
+    <center><div class="tit"><h2 style="color: #000000; ">Docente <?php echo $_SESSION["nombre_docente"] ?></h2></center>
   <div id="reloj" style="float:left; font-size:22px;"><script type="text/javascript">
 function startTime(){
 today=new Date();
