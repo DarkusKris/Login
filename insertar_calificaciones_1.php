@@ -14,6 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="Joseph Godoy">
 <input type="button" value="Cerrar Sesion" class="btn btn-warning" OnClick="location.href='logout.php'">
+<div class="tit2">ID: <?php echo $_SESSION["id_docente"]?></div>
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
@@ -37,6 +38,7 @@
 // Ya tienes la variable conect al hacer import a serv.php
 //$connect=mysqli_connect("localhost","root","","basedatosmaster");
 if ($connect) {
+    $tabla_materia = $materia; //<- que esta variable vaya cambiando.
     echo "Conexion exitosa. <br />";
     foreach ($_POST['alumno'] as $id_alumno => $calificaciones){
         $unidad1= $calificaciones[0];
@@ -45,7 +47,7 @@ if ($connect) {
         $unidad4= $calificaciones[3];
          
         // SINTAXIS UPDATE: UPDATE tabla SET columna1 = valor1, columnaN = valorN WHERE condidional;
-        $consulta="UPDATE calificaciones_1 SET unidad1 = '$unidad1', unidad2 = '$unidad2', unidad3 = '$unidad3', unidad4 = '$unidad4' WHERE id_alumno = '$id_alumno'";
+        $consulta="UPDATE '$tabla_materia' SET unidad1 = '$unidad1', unidad2 = '$unidad2', unidad3 = '$unidad3', unidad4 = '$unidad4' WHERE id_alumno = '$id_alumno'";
 
         //detectar errores en la ejecucion
         try{

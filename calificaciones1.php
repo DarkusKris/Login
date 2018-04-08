@@ -14,6 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="Joseph Godoy">
 <input type="button" value="Cerrar Sesion" class="btn btn-warning" OnClick="location.href='logout.php'">
+<div class="tit2">ID: <?php echo $_SESSION["id_docente"]?></div>
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
@@ -69,7 +70,7 @@ foreach ($result as $key => $value) {
   </tr>
   </table>
 </div>
-<br><p align="center"><strong>Nota: En caso de que solo vaya a agregar calificaciones a una sola unidad, agregue un 0 a las demas. En caso contrario, rellene todos los campos.</strong></p><br>
+<br><p align="center"><strong>Nota: Si solo agrega calificaciones a un solo campo y deja los demas en blanco, en automatico se agregara 0 a esos campos sin llenar.</strong></p><br>
   ');
   // $_POST['alumno']			[id_alumno]									[calificacion]
   //	A- esta es la variable, 	A-esto es el id del alumno en número y 		A- esta es la posicion de la calificacion (numero de la unidad -1)

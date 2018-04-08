@@ -14,6 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="Joseph Godoy">
 <input type="button" value="Cerrar Sesion" class="btn btn-warning" OnClick="location.href='logout.php'">
+<div class="tit2">ID: <?php echo $_SESSION["id_docente"]?></div>
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
@@ -55,18 +56,49 @@ var mes = (m < 10) ? '0' + m : m;
 
 <h2><br>
 
+<?php
+$query = 'SELECT dG.id_docente, dG.grupo_alumno FROM docente_grupo dG
+          WHERE dG.id_docente = '.$_SESSION['id_docente'].'; ';
 
+$result = mysqli_query($connect, $query);
+echo('
 <center><button data-toggle="collapse" data-target="#demo">Grupos</button>
 
-<div id="demo" class="collapse">
-<input type="button" class="btn btn-warning" value="TIC's 801" style='width:35%; height:30px;' OnClick="location.href='calificaciones1.php'">
-</div>
-</h2></center>
+<div id="demo" class="collapse"> ');
+foreach ($result as $key => $value) {
 
-<!-- Footer
-      ================================================== -->
 
-    
-  </style>
-  </body>
+echo(' <a href="calificaciones1.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="1"></a> ');
+
+if($_SESSION['id_docente'] != 1){ 
+
+echo(' <a href="calificaciones2.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="2"></a> ');
+
+} elseif ($_SESSION['id_docente'] != 2 ) {
+
+
+echo(' <a href="calificaciones3.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="2"></a> ');
+
+} elseif ($_SESSION['id_docente'] != 2) {
+
+echo(' <a href="calificaciones4.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="3"></a> ');
+
+} elseif ($_SESSION['id_docente'] != 3){
+
+echo(' <a href="calificaciones5.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="4"></a> ');
+
+} elseif ($_SESSION['id_docente'] != 4){
+
+echo(' <a href="calificaciones6.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="5"></a> ');
+
+}
+echo ('</div>
+</h2></center>');
+}
+?>
+
+<!-- Footer      ================================================== -->
+
+</style>
+</body>
 </html>

@@ -68,12 +68,7 @@ echo ('
 ');
 foreach ($result as $key => $value) {
 
-echo('<a href="grupos_lista.php">
-  <input type="button" class="btn btn-warning" 
-  name="materia['.$value["id_materia"].']" 
-  value=" '.$value["nombre_materia"].' " 
-  style="width:35%; height:32px; font-size: 18px">
-</a>');
+echo('<a href="grupos_lista.php"><input type="button" class="btn btn-warning" name="materia['.$value["id_materia"].']" value=" '.$value["nombre_materia"].' " style="width:35%; height:33px; font-size: 16px"></a>');
 
 
 }
