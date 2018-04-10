@@ -57,46 +57,38 @@ var mes = (m < 10) ? '0' + m : m;
 <h2><br>
 
 <?php
-$query = 'SELECT dG.id_docente, dG.grupo_alumno FROM docente_grupo dG
+$query = 'SELECT dG.id_docente, dG.grupo_alumno, dG.id_materia FROM docente_grupo dG
           WHERE dG.id_docente = '.$_SESSION['id_docente'].'; ';
 
 $result = mysqli_query($connect, $query);
 echo('
-<center><button data-toggle="collapse" data-target="#demo">Grupos</button>
+<center><button data-toggle="collapse" data-target="#demo">Seleccione su grupo</button>
 
 <div id="demo" class="collapse"> ');
 foreach ($result as $key => $value) {
-
-
-echo(' <a href="calificaciones1.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="1"></a> ');
-
-if($_SESSION['id_docente'] != 1){ 
-
-echo(' <a href="calificaciones2.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="2"></a> ');
-
-} elseif ($_SESSION['id_docente'] != 2 ) {
-
-
-echo(' <a href="calificaciones3.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="2"></a> ');
-
-} elseif ($_SESSION['id_docente'] != 2) {
-
-echo(' <a href="calificaciones4.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="3"></a> ');
-
-} elseif ($_SESSION['id_docente'] != 3){
-
-echo(' <a href="calificaciones5.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="4"></a> ');
-
-} elseif ($_SESSION['id_docente'] != 4){
-
-echo(' <a href="calificaciones6.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;" id="5"></a> ');
-
+if($value == 1){
+echo(' <a href="calificaciones'.$value['id_materia'].'.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;"></a> '); 
+}elseif($value == 2){
+echo(' <a href="calificaciones'.$value['id_materia'].'.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;"></a> '); 
 }
+elseif($value == 3){
+echo(' <a href="calificaciones'.$value['id_materia'].'.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;"></a> ');}
+
+elseif($value == 4){
+echo(' <a href="calificaciones'.$value['id_materia'].'.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;"></a> ');}
+
+elseif($value == 5){
+ echo(' <a href="calificaciones'.$value['id_materia'].'.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;"></a> ');}
+
+else{
+echo(' <a href="calificaciones'.$value['id_materia'].'.php"><input type="button" class="btn btn-warning" value=" '.$value["grupo_alumno"].' " style="width:35%; height:30px;"></a> '); }
+
+
 echo ('</div>
 </h2></center>');
 }
-?>
 
+?>
 <!-- Footer      ================================================== -->
 
 </style>

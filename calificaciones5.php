@@ -1,8 +1,8 @@
 <?php
   session_start();
   include 'serv.php';
-  if(isset($_SESSION['usuario'])){
-  echo '<script> window.location="docentes.php"; </script>';
+  if(!isset($_SESSION['veri_code'], $_SESSION["nombre_docente"], $_SESSION["id_docente"])){
+  echo '<script> window.location="indexdocentes.php"; </script>';
   }
 ?>
 <!DOCTYPE html>
@@ -14,6 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="Joseph Godoy">
 <input type="button" value="Cerrar Sesion" class="btn btn-warning" OnClick="location.href='logout.php'">
+<div class="tit2">ID: <?php echo $_SESSION["id_docente"]?></div>
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
@@ -38,7 +39,7 @@
 // Sentencia de vinculación entre tablas.
 $query = 'SELECT u.id_alumno, u.nombre_alumno FROM usuarios u 
           INNER JOIN materia_alumno mA ON u.id_alumno = mA.id_alumno 
-          INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia
+          INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia5
           WHERE mD.clave_materia = "TIC-1006"';
 $result = mysqli_query($connect,$query);
 // Generación dinámica por cada alumno en esa clase.
@@ -90,7 +91,7 @@ foreach ($result as $key => $value) {
 
 }
 ?>
-    <div><br><br><center><input type="submit" class="btn btn-primary" value="Ingresar datos" style='width:35%; height:30px;'OnClick="location.href='insertar_calificaciones_1.php'">
+    <div><br><br><center><input type="submit" class="btn btn-primary" value="Ingresar datos" style='width:35%; height:30px;'OnClick="location.href='insertar_calificaciones_5.php'">
     </center>
     </div><br><br>
     

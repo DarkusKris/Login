@@ -1,8 +1,8 @@
 <?php
   session_start();
   include 'serv.php';
-  if(isset($_SESSION['usuario'])){
-  echo '<script> window.location="docentes.php"; </script>';
+  if(!isset($_SESSION['veri_code'], $_SESSION["nombre_docente"], $_SESSION["id_docente"])){
+  echo '<script> window.location="indexdocentes.php"; </script>';
   }
 ?>
 <!DOCTYPE html>
@@ -14,6 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="Joseph Godoy">
 <input type="button" value="Cerrar Sesion" class="btn btn-warning" OnClick="location.href='logout.php'">
+<div class="tit2">ID: <?php echo $_SESSION["id_docente"]?></div>
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
@@ -38,8 +39,8 @@
 // Sentencia de vinculación entre tablas.
 $query = 'SELECT u.id_alumno, u.nombre_alumno FROM usuarios u 
           INNER JOIN materia_alumno mA ON u.id_alumno = mA.id_alumno 
-          INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia
-          WHERE mD.clave_materia = "ISD-1605"';
+          INNER JOIN materia_docente mD ON mD.clave_materia LIKE mA.clave_materia3
+          WHERE mD.clave_materia = "ISF-1603"';
 $result = mysqli_query($connect,$query);
 // Generación dinámica por cada alumno en esa clase.
 foreach ($result as $key => $value) {
@@ -60,12 +61,16 @@ foreach ($result as $key => $value) {
     <td align="center" bgcolor="orange"><strong>Unidad 2</strong></td>
     <td align="center" bgcolor="orange"><strong>Unidad 3</strong></td>
     <td align="center" bgcolor="orange"><strong>Unidad 4</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 5</strong></td>
+    <td align="center" bgcolor="orange"><strong>Unidad 6</strong></td>
   </tr>
   <tr>
     <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad1" class="form-input" style="width:28%; height:18px;" /></td>
     <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad2" class="form-input" style="width:28%; height:18px;" /></td>
     <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad3" class="form-input" style="width:28%; height:18px;" /></td>
     <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad4" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad5" class="form-input" style="width:28%; height:18px;" /></td>
+    <td align="center" bgcolor="white"><input type="number" name="alumno['.$value['id_alumno'].'][]" id="unidad6" class="form-input" style="width:28%; height:18px;" /></td>
   </tr>
   </table>
 </div>
@@ -82,7 +87,7 @@ foreach ($result as $key => $value) {
 
 }
 ?>
-    <div><br><br><center><input type="submit" class="btn btn-primary" value="Ingresar datos" style='width:35%; height:30px;'OnClick="location.href='insertar_calificaciones_1.php'">
+    <div><br><br><center><input type="submit" class="btn btn-primary" value="Ingresar datos" style='width:35%; height:30px;'OnClick="location.href='insertar_calificaciones_3.php'">
     </center>
     </div><br><br>
     
